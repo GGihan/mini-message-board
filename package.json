@@ -1,0 +1,26 @@
+{
+  "name": "mini-message-board",
+  "version": "1.0.0",
+  "description": "A Mini Message Board created with Express and EJS, exercise on foundational skills with these tools.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node --watch app.js",
+    "test": "node --test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GGihan/mini-message-board.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/GGihan/mini-message-board/issues"
+  },
+  "homepage": "https://github.com/GGihan/mini-message-board#readme",
+  "dependencies": {
+    "ejs": "^6.0.1",
+    "express": "^5.2.1"
+  }
+}
