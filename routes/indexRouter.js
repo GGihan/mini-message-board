@@ -25,7 +25,13 @@ indexRouter.get('/', (req, res) => {
 });
 
 indexRouter.get('/new', (req, res) => {
+  res.render('form', { title: 'New Message' })
+});
 
+indexRouter.post('/new', (req, res) => {
+  const { text, user } = req.body;
+  messages.push({ text: text, user: user, added: new Date() });
+  res.redirect("/");
 });
 
 export default indexRouter;
