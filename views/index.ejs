@@ -4,11 +4,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/css/styles.css">
-  <title>Homepage</title>
+  <title><%= title %></title>
 </head>
   <body>
     <main>
-      <h1>This is the <i>index</i> page!</h1>
+      <% messages.forEach(message => { %>
+        <ul>
+          <li>
+            <p><%= message.user %> wrote:</p>
+          </li>
+          <li>
+            <p><%= message.text %></p>
+          </li>
+          <li>
+            <p>On <%= message.added %></p>
+          </li>
+        </ul>
+        <hr>
+      <% }); %>
     </main>
   </body>
 </html>
