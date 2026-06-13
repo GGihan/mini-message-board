@@ -1,4 +1,3 @@
-import { messages, getMessageById } from "../db/db.js";
 import * as db from '../db/queries.js';
 
 export const messageListGet = async (req, res, next) => {
@@ -17,7 +16,7 @@ export const messageNewGet = (req, res) => {
   res.render('form', { title: 'New Message' });
 };
 
-export const messageNewPost = async (req, res) => {
+export const messageNewPost = async (req, res, next) => {
   try {
     const { username, text } = req.body;
     await db.insertMessage(username, text);
@@ -27,17 +26,20 @@ export const messageNewPost = async (req, res) => {
   } 
 };
 
-export async function viewMessage(req, res, next) {
+export const messageViewGet = async (req, res, next) => {
   try {
     const { messageId } = req.params;
-    const message = await getMessageById(Number(messageId));
+    const message = await db.getMessage(messageId);
     if (!message) {
-      const err = new Error('Message not found');
-      err.status = 404;
-      return next(err);
+      const error = new Error('Message not found');
+      error.status = 404;
+      return next(error);
     }
-    res.render('message', { title: 'View Message', message: message });
+    res.render('message', {
+        title: 'View Message',
+        message: message,
+      });
   } catch (error) {
     next(error);
   }
-}
+};
