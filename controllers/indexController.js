@@ -1,4 +1,4 @@
-import { messages, getMessageById } from "../db.js";
+import { messages, getMessageById } from "../db/db.js";
 
 export const createNewMessage = (req, res) => {
   const { text, user } = req.body;
