@@ -3,7 +3,7 @@ import * as db from '../db/queries.js';
 
 export const messageListGet = async (req, res, next) => {
   try {
-    const allMessages = await db.getAllMessages()
+    const allMessages = await db.getAllMessages();
     res.render('index', {
       title: 'Mini Messageboard',
       messages: allMessages,
@@ -13,16 +13,18 @@ export const messageListGet = async (req, res, next) => {
   }
 };
 
-export const createNewMessage = (req, res) => {
-  const { text, user } = req.body;
-  const nextId = messages.length > 0 ? messages[messages.length - 1].id + 1 : 1;
-  messages.push({ 
-    text: text,
-    user: user,
-    added: new Date(),
-    id: nextId,
-  });
-  res.redirect("/");
+export const messageNewGet = (req, res) => {
+  res.render('form', { title: 'New Message' });
+};
+
+export const messageNewPost = async (req, res) => {
+  try {
+    const { username, text } = req.body;
+    await db.insertMessage(username, text);
+    res.redirect('/');
+  } catch (error) {
+    next(error);
+  } 
 };
 
 export async function viewMessage(req, res, next) {

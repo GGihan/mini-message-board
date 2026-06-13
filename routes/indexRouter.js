@@ -6,12 +6,10 @@ const indexRouter = Router();
 
 indexRouter.get('/', indexController.messageListGet);
 
-indexRouter.get('/new', (req, res) => {
-  res.render('form', { title: 'New Message' });
-});
+indexRouter.get('/new', indexController.messageNewGet);
 
 indexRouter.get('/message/:messageId', indexController.viewMessage);
 
-indexRouter.post('/new', indexController.createNewMessage);
+indexRouter.post('/new', indexController.messageNewPost);
 
 export default indexRouter;
