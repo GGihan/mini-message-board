@@ -1,4 +1,17 @@
 import { messages, getMessageById } from "../db/db.js";
+import * as db from '../db/queries.js';
+
+export const messageListGet = async (req, res, next) => {
+  try {
+    const allMessages = await db.getAllMessages()
+    res.render('index', {
+      title: 'Mini Messageboard',
+      messages: allMessages,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
 
 export const createNewMessage = (req, res) => {
   const { text, user } = req.body;

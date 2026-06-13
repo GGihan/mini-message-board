@@ -5,12 +5,12 @@ import { Client } from "pg";
 const SQL = `
 CREATE TABLE IF NOT EXISTS messages (
   id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-  usernames VARCHAR(255) NOT NULL,
+  username VARCHAR(255) NOT NULL,
   text VARCHAR(400) NOT NULL,
   added TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-INSERT INTO messages (usernames, text)
+INSERT INTO messages (username, text)
 VALUES
   ('Jeff', 'Hey, what is going on?'),
   ('Charles', 'Hello, World!'),
