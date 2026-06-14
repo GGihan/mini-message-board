@@ -22,6 +22,9 @@ async function main() {
   const dbUrl = process.argv[2] || process.env.DB_URL;
   const client = new Client({
     connectionString: dbUrl,
+    ssl: {
+      rejectUnauthorized: false
+    }
   });
   await client.connect();
   await client.query(SQL);
