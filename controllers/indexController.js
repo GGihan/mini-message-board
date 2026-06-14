@@ -16,7 +16,6 @@ const validateMessage = [
     .trim()
     .notEmpty().withMessage(`Text ${emptyErr}`)
     .isLength({ min: 10, max: 400 }).withMessage(`Text ${textLengthErr}`)
-    .escape()
 ];
 
 export const messageListGet = async (req, res) => {
